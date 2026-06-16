@@ -127,10 +127,5 @@ O projeto gera automaticamente os seguintes gráficos:
 * GitHub
 
 ---
-
-## Autor
-
-Marina da Fonseca Frias
-
 Curso de Ciência da Computação
 
