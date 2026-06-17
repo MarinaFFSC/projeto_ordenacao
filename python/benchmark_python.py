@@ -1,9 +1,7 @@
-# arquivo: benchmark_python.py
 import time
 import random
 from counting_sort import counting_sort
 
-# Configurações seguras para 4GB de RAM
 tamanhos = [1000, 10000, 100000]
 rodadas = 30
 random.seed(42)
@@ -14,9 +12,8 @@ with open("tempos_python.txt", "w") as f:
     f.write("tamanho,cenario,tempo_ms\n")
     
     for n in tamanhos:
-        k = n  # O maior número será igual ao tamanho da lista
+        k = n  # p/ o maior número ser igual ao tamanho da lista
         
-        # Cenários solicitados pelo professor
         cenarios = {
             "Melhor": list(range(n)),
             "Medio": [random.randint(0, k) for _ in range(n)],
@@ -25,10 +22,10 @@ with open("tempos_python.txt", "w") as f:
         
         for nome, dados_originais in cenarios.items():
             for _ in range(rodadas):
-                # Fazemos uma cópia para não estragar o cenário nas próximas rodadas
+                # cópia p/ não estragar o cenário nas próximas rodadas
                 lista_copia = dados_originais.copy() 
                 
-                # Medição com alta precisão
+                # medição 
                 t_inicio = time.perf_counter()
                 for _ in range(100):
                     counting_sort(lista_copia, k)

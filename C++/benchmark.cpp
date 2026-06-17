@@ -1,15 +1,12 @@
-// arquivo: benchmark.cpp
 #include <iostream>
 #include <vector>
 #include <chrono>
 #include <cstdlib>
 #include <cstdio>
 
-// ==========================================
-// BLOCO 1: O ALGORITMO COUNTING SORT
-// ==========================================
+//  algoritmo counting sort 
 void counting_sort(const int *arr, int *out, int n, int k) {
-    // Usando vetor dinâmico para garantir limpeza automática de memória
+    // c/ vetor dinamico p/ garantir limpeza automática de memória
     std::vector<int> cnt(k + 1, 0);
     
     for (int i = 0; i < n; i++) 
@@ -25,9 +22,7 @@ void counting_sort(const int *arr, int *out, int n, int k) {
     }
 }
 
-// ==========================================
-// BLOCO 2: O BENCHMARK CORRIGIDO (CHRONO)
-// ==========================================
+// benchmark c++
 void rodar_cenario(FILE *f, int n, const char* nome_cenario, int* dados, int rodadas) {
     std::vector<int> out(n, 0);
 
@@ -70,7 +65,7 @@ int main() {
         std::vector<int> medio(n);
         std::vector<int> pior(n);
 
-        // Preenchendo os cenários de teste
+        // pra preencher cenario teste
         for(int i = 0; i < n; i++) {
             melhor[i] = i;
             medio[i] = rand() % n;

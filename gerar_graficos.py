@@ -1,5 +1,3 @@
-print("GERANDO novos OS 8 GRAFICOS")
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,20 +5,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# ==========================
-# LEITURA DOS DADOS
-# ==========================
-
+# leitura dados
 df_py = pd.read_csv("tempos_python.txt")
 df_c = pd.read_csv("C++/tempos_c.txt")
 
-# evita problemas com log(0)
+# evitar problemas c/ log(0)
 df_py["tempo_ms"] = df_py["tempo_ms"].clip(lower=0.000001)
 df_c["tempo_ms"] = df_c["tempo_ms"].clip(lower=0.000001)
 
-# ==========================
-# MÉDIAS E DESVIOS
-# ==========================
+# médias e desvios
 
 py_stats = (
     df_py.groupby(["tamanho", "cenario"])["tempo_ms"]
@@ -36,10 +29,8 @@ c_stats = (
 
 cenarios = ["Melhor", "Medio", "Pior"]
 
-# ==========================
-# GRÁFICOS 1,2,3
-# CENÁRIOS
-# ==========================
+# gráficos 1,2,3
+# cenários
 
 for cenario in cenarios:
 
@@ -91,10 +82,8 @@ for cenario in cenarios:
 
     plt.close()
 
-# ==========================
-# GRÁFICO 4
-# COMPARAÇÃO GERAL
-# ==========================
+# grafico 4
+# comparação geral
 
 py_geral = df_py.groupby("tamanho")["tempo_ms"].mean()
 c_geral = df_c.groupby("tamanho")["tempo_ms"].mean()
@@ -132,10 +121,8 @@ plt.savefig(
 
 plt.close()
 
-# ==========================
-# GRÁFICO 5
-# SPEEDUP
-# ==========================
+# gráfico 5
+# speedup
 
 speedup = py_geral / c_geral
 
@@ -162,10 +149,9 @@ plt.savefig(
 
 plt.close()
 
-# ==========================
-# GRÁFICO 6
-# DESVIO PADRÃO
-# ==========================
+
+# gráfico 6
+# desvio padrão
 
 py_std = df_py.groupby("tamanho")["tempo_ms"].std()
 c_std = df_c.groupby("tamanho")["tempo_ms"].std()
@@ -191,7 +177,7 @@ plt.bar(
 
 plt.xticks(x, py_std.index)
 
-# MELHORIA
+# melhoria
 plt.yscale("log")
 
 plt.title("Desvio Padrão das Execuções")
@@ -208,10 +194,10 @@ plt.savefig(
 
 plt.close()
 
-# ==========================
-# GRÁFICO 7
-# ADERÊNCIA TEÓRICA (TEMPO REAL)
-# ==========================
+
+# gráfico 7
+# aderência teória
+
 
 plt.figure(figsize=(8,5))
 
@@ -261,10 +247,9 @@ plt.savefig(
 
 plt.close()
 
-# ==========================
-# GRÁFICO 8A
-# BOXPLOT PYTHON
-# ==========================
+# gráfico 8.1
+# boxplot python
+
 
 dados_py = []
 labels_py = []
@@ -296,10 +281,9 @@ plt.savefig(
 
 plt.close()
 
-# ==========================
-# GRÁFICO 8B
-# BOXPLOT C++
-# ==========================
+# gráfico 8.2
+# boxplot c++
+
 
 dados_c = []
 labels_c = []
